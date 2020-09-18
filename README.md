@@ -6,3 +6,7 @@
     * 存储：'size_in_bytes', 'throttle_time_in_millis'
 2. 集群监控
     * 集群状态、节点个数、分片个数
+3. 系统监控
+    * jvm堆大小、堆使用率
+4.  网络监控
+    * http当前连接数、历史连接总数
