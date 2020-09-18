@@ -70,9 +70,9 @@ def get_cluster_metrics(es_host='es-cluster-us'):
     metric_counter = {}
     for metric in cluster_health_metrics:
         if metric == 'status':
-            metric_counter['cluster.%s' % metric] = cluster_status_map[cluster_health[metric]]
+            metric_counter['%s.%s' % (es_host, metric)] = cluster_status_map[cluster_health[metric]]
         else:
-            metric_counter['cluster.%s' % metric] = cluster_health[metric]
+            metric_counter['%s.%s' % (es_host, metric)] = cluster_health[metric]
     return metric_counter
 
 
@@ -206,7 +206,8 @@ def main():
                                         )
             for data in latency_data:
                 falcon_data.append(data)
-        save_former_status_data(cluster, metric_value['search.query_total'], metric_value['search.query_time_in_millis'],
+        save_former_status_data(cluster,
+                                metric_value['search.query_total'], metric_value['search.query_time_in_millis'],
                                 metric_value['search.fetch_total'], metric_value['search.fetch_time_in_millis'],
                                 metric_value['indexing.index_total'], metric_value['indexing.index_time_in_millis'],
                                 metric_value['flush.total'], metric_value['flush.total_time_in_millis'])
